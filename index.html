@@ -28,32 +28,63 @@
         </ul>
       </header>
       <section>
-        <h3>Welcome to GitHub Pages.</h3>
+        <h1>grunt-css-amd</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<blockquote>
+<p>Compile css files into javascript AMD named module files. Submitted by <a href="/thiagofelix">Thiago Felix</a>.</p>
+</blockquote>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<h2>Getting Started</h2>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Install this grunt plugin next to your project's <a href="https://github.com/cowboy/grunt/blob/master/docs/getting_started.md">grunt.js gruntfile</a> with: <code>npm install grunt-grunt-css-amd</code></p>
 
-<h3>Designer Templates</h3>
+<p>Then add this line to your project's <code>grunt.js</code> gruntfile:</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<div class="highlight"><pre><span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">'grunt-css-amd'</span><span class="p">);</span>
+</pre></div>
 
-<h3>Rather Drive Stick?</h3>
+<h3>Overview</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>Inside your <code>grunt.js</code> file, add a section named <code>cssamd</code>.</p>
 
-<h3>Authors and Contributors</h3>
+<p>This task will find all matched css files and compile each file to a relative javascript ( <a href="http://requirejs.org/docs/whyamd.html">AMD module formatted</a> ) file</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>This idea came up from the soundclound team on this <a href="http://backstage.soundcloud.com/2012/06/building-the-next-soundcloud/">post</a>.</p>
 
-<h3>Support or Contact</h3>
+<p>The main reason to do that is because compiling css to amd module you can require it as a view dependencie on <a href="backbonejs.org">Backbone</a> like soundcloud team demonstrate on their blog.</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>There is a <a href="https://github.com/thiagofelix/backbone-css-view-example">Demo</a> about this concept, see it in action.</p>
+
+<h3>Config Example</h3>
+
+<div class="highlight"><pre><span class="nx">cssamd</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">compile</span><span class="o">:</span><span class="p">{</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">{</span>      
+      <span class="s2">"path/to/modules/folder/"</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">"path/to/css/folder/**/*.css"</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">moduleNamePrefix</span><span class="o">:</span> <span class="s2">""</span> <span class="c1">// Optional</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4>Parameters</h4>
+
+<h5>files</h5>
+
+<p>This define where the modules will be saved after processing css files</p>
+
+<h4>Options</h4>
+
+<h5>moduleNamePrefix (optional)</h5>
+
+<p>By default the name of module will be "path/to/modules/folder" + "css_file_name.css". Like this exemple below:
+define("path/to/moodules/folder/foo.css", [], function(){})</p>
+
+<p>If you set a moduleNamePrefix, it will override the "path/to/module/folder/" in the module's name.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/thiagofelix">thiagofelix</a></p>
