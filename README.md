@@ -1,13 +1,13 @@
-# grunt-contrib-clean
-> Clear files and folders (part of the [grunt-contrib](/gruntjs/grunt-contrib) collection).  Submitted by [Tim Branyen](/tbranyen).
+# grunt-css-amd
+> Compile css files into javascript AMD named module files. Submitted by [Thiago Felix](/thiagofelix).
 
 ## Getting Started
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-contrib-clean`
+Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-grunt-css-amd`
 
 Then add this line to your project's `grunt.js` gruntfile:
 
 ```javascript
-grunt.loadNpmTasks('grunt-contrib-clean');
+grunt.loadNpmTasks('grunt-css-amd');
 ```
 
 [grunt]: https://github.com/cowboy/grunt
@@ -15,41 +15,43 @@ grunt.loadNpmTasks('grunt-contrib-clean');
 
 ### Overview
 
-Inside your `grunt.js` file, add a section named `clean`.
+Inside your `grunt.js` file, add a section named `cssamd`.
 
-*Due to the destructive nature of this task, always be cautious of the paths you clean.*
+This task will find all matched css files and compile each file to a relative javascript ( [AMD module formatted](http://requirejs.org/docs/whyamd.html) ) file
 
-### Config Examples
+This idea came up from the soundclound team on this [post](http://backstage.soundcloud.com/2012/06/building-the-next-soundcloud/).
 
-There are three formats you can use to run this task.
+The main reason to do that is because compiling css to amd module you can require it as a view dependencie on [Backbone](backbonejs.org) like soundcloud team demonstrate on their blog.
 
-##### Short
+There is a [Demo](https://github.com/thiagofelix/backbone-css-view-example) about this concept, see it in action.
 
-``` javascript
-clean: ["path/to/dir/one", "path/to/dir/two"]
-```
+### Config Example
 
-##### Medium (specific targets with global options)
 
 ``` javascript
-clean: {
-  build: ["path/to/dir/one", "path/to/dir/two"],
-  release: ["path/to/another/dir/one", "path/to/another/dir/two"]
-},
-```
-
-##### Long (specific targets with per target options)
-
-``` javascript
-clean: {
-  build: {
-    src: ["path/to/dir/one", "path/to/dir/two"]
+cssamd: {
+  compile:{
+    files: {      
+      "path/to/modules/folder/": [
+        "path/to/css/folder/**/*.css"
+      ]
+    }
+    options: {
+    	moduleNamePrefix: "" // Optional
+    }
   }
 }
 ```
 
 #### Parameters
 
-##### src ```string```
+##### files 
+This define where the modules will be saved after processing css files
 
-This defines what paths this task will clean recursively (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md) and [minimatch](https://github.com/isaacs/minimatch)).
+#### Options
+
+##### moduleNamePrefix (optional)
+By default the name of module will be "path/to/modules/folder" + "css_file_name.css". Like this exemple below:
+define("path/to/moodules/folder/foo.css", [], function(){})
+
+If you set a moduleNamePrefix, it will override the "path/to/module/folder/" in the module's name.
