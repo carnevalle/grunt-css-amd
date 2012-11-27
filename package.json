@@ -1,0 +1,53 @@
+{
+  "name": "grunt-css-amd",
+  "description": "Parses css files into javascript modules.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/thiagofelix/grunt-css-amd",
+  "author": {
+    "name": "Thiago Felix",
+    "url": "http://twitter.com/@thiagoofelix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thiagofelix/grunt-css-amd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thiagofelix/grunt-css-amd/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/thiagofelix/grunt-css-amd/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "grunt.js",
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "rimraf": "~2.0.2",
+    "grunt-lib-contrib": "~0.3.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.15",
+    "grunt-contrib-clean": "~0.2.0",
+    "mocha": "~1.4.2",
+    "grunt-simple-mocha": "*"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "contributors": [
+    {
+      "name": "Thiago Felix",
+      "url": "http://twitter.com/@thiagoofelix"
+    }
+  ],
+  "readme": "",
+  "readmeFilename": "README.md",
+  "_id": "grunt-css-amd@0.1.0",
+  "_from": "grunt-css-amd@~0.1.0"
+}

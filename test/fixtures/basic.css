@@ -1,0 +1,7 @@
+.myView {
+  padding: 5px;
+  color: #f0f;
+}
+.myView__foo {
+  border: 1px solid #0f0;
+}
