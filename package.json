@@ -1,7 +1,7 @@
 {
   "name": "grunt-css-amd",
-  "description": "Parses css files into javascript modules.",
-  "version": "0.1.0",
+  "description": "Parses css files into javascript AMD modules files.",
+  "version": "0.1.1",
   "homepage": "https://github.com/thiagofelix/grunt-css-amd",
   "author": {
     "name": "Thiago Felix",
