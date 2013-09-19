@@ -12,7 +12,6 @@
 module.exports = function(grunt) {
 
   grunt.registerMultiTask("cssamd", "Compile all css files into javascript amd module files", function() {
-    grunt.log.writeln('Yeah, we are rocking! ', this.files.length);
 
     if (this.files.length < 1) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
