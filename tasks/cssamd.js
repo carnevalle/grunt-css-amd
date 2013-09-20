@@ -17,6 +17,10 @@ module.exports = function(grunt) {
       grunt.verbose.warn('Destination not written because no source files were provided.');
     }
 
+    var options = this.options({
+      deleteSources: false
+    })
+
     this.files.forEach(function(f) {
       var src = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
@@ -38,7 +42,14 @@ module.exports = function(grunt) {
       var output = CSS2Module(css);
 
       // Write the destination file.
-      grunt.file.write(f.dest, output);            
+      grunt.file.write(f.dest, output);
+
+      //grunt.log.write('Logging some stuff...').ok();
+
+      // Delete source
+      if(options.deleteSources){
+        grunt.file.delete(src);  
+      }
 
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');
