@@ -48,7 +48,7 @@ module.exports = function(grunt) {
 
       // Delete source
       if(options.deleteSources){
-        grunt.file.delete(src);  
+        grunt.file.delete(src);
       }
 
       // Print a success message.
@@ -60,17 +60,26 @@ module.exports = function(grunt) {
 
   var CSS2Module = function(source) {
     try {
-      
+
+      var css = source.replace(/[\r\n]/g,"");
+
       var output  = "";
 
       output += "define([], function(){\n";
       output += "\tvar style = document.createElement('style');\n";
-      output += "\tstyle.appendChild(\n";
-      output += "\t\tdocument.createTextNode('"+source.replace(/[\r\n]/g,"")+"')\n";
-      output += "\t);\n";
+      output += "\tstyle.type = 'text/css'\n";
+      output += "\tif(style.styleSheet){\n";
+      output += "\t\tstyle.styleSheet.cssText = '"+css+"'\n";
+      output += "\t}else{\n";
+      output += "\t\tstyle.appendChild(\n";
+      output += "\t\t\tdocument.createTextNode('"+css+"')\n";
+      output += "\t\t);\n";
+      output += "\t}\n";
       output += "\treturn style;\n";
       output += "});\n";
+
       return output;
+
     } catch (e) {
       grunt.log.error(e);
       grunt.fail.warn('CSS modularization failed.');
